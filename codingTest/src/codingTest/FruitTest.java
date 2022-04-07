@@ -4,12 +4,12 @@ import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Fruit {
-	public static void main(String[] args) {
+public class FruitTest {
+	public static String[] result(int input) {
 		
-		int input; //입력값
-		int part; //각 자리수
-		int i = 0;//반복문 사용
+		int part = 0; //각 자리수
+		String[] arr = new String[15];
+		int i = 0;
 		
 		HashMap<Integer,String> map = new HashMap<Integer,String>();//초기값 지정
 		map.put(1,"kiwi         ");
@@ -112,6 +112,29 @@ public class Fruit {
 		map.put(98,"pineapple   ");
 		map.put(99,"apple       ");
 		map.put(100,"pineapple  ");
+		
+		while(true) {
+			part = input/10000 + input/1000 + input/100 + input/10 + input%10;
+			input = input - part;
+			if(map.containsKey(input)) {
+				arr[i] = map.get(input);
+				i++;
+				//System.out.println(input);
+				}
+			
+			if(input<10) {
+				break;
+			}
+			
+		}
+		arr[i] = map.get(input);
+		
+		return arr;
+	}
+	public static void main(String[] args) {
+		
+		int input; //입력값
+		String[] arr;
 	
 		
 		Scanner sc = new Scanner(System.in);
@@ -120,22 +143,13 @@ public class Fruit {
 		
 		input = sc.nextInt();
 		
+		arr = result(input);
+		
 		//System.out.println(map.get(53));
 		
-		while(true) {
-			part = input/10000 + input/1000 + input/100 + input/10 + input%10;
-			input = input - part;
-			if(map.containsKey(input)) {
-				System.out.println(map.get(input));
-				System.out.println(input);
-				}
-			
-			if(input<10) {
-				break;
-			}
-			
+		for (String el : arr) {
+		    System.out.println(el);
 		}
-		System.out.println(map.get(input));
 		
 		
 		
